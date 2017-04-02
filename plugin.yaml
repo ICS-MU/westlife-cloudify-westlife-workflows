@@ -3,7 +3,7 @@ plugins:
     executor: central_deployment_agent
     source: https://github.com/vholer/cloudify-westlife-workflows/archive/master.zip
     package_name: cloudify-westlife-workflows
-    package_version: '0.0.2'
+    package_version: '0.0.3'
 
 workflows:
   scale_min_max:
@@ -26,3 +26,9 @@ workflows:
             and this property is 'true', operate on the compute node instead
             of the specified node.
         default: false
+      min_instances:
+        description: The minimum number of allowed instances
+        default: 1
+      max_instances:
+        description: The maximum number of allowed instances
+        default: 100
