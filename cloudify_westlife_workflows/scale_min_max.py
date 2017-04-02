@@ -52,6 +52,8 @@ def scale_min_max(ctx,
         except ValueError:
             raise ValueError('The min_instances parameter must be a number. '
                              'Got: {0}'.format(min_instances))
+    else:
+        ctx.logger.info(type(min_instances))
 
     if isinstance(max_instances, basestring):
         try:
@@ -59,6 +61,8 @@ def scale_min_max(ctx,
         except ValueError:
             raise ValueError('The max_instances parameter must be a number. '
                              'Got: {0}'.format(max_instances))
+    else:
+        ctx.logger.info(type(max_instances))
 
     # check instance limits
     if (delta>0) and (planned_num_instances>max_instances):
