@@ -14,9 +14,9 @@ def scale_min_max(ctx,
                  ignore_failure=False,
                  **kwargs):
 
-    # copy from "scale_entity" workflow:
-    # https://github.com/cloudify-cosmo/cloudify-plugins-common/blob/master/cloudify/plugins/workflows.py
-    # >>>>>------>>>>>----->>>>>----->>>>>
+# part of "scale_entity" workflow:
+# https://github.com/cloudify-cosmo/cloudify-plugins-common/blob/master/cloudify/plugins/workflows.py
+# >>>>>------>>>>>----->>>>>----->>>>>
     if isinstance(delta, basestring):
         try:
             delta = int(delta)
@@ -43,14 +43,22 @@ def scale_min_max(ctx,
         curr_num_instances = scaled_node.number_of_instances
         planned_num_instances = curr_num_instances + delta
         scale_id = scaled_node.id
-    # <<<<<------<<<<<-----<<<<<-----<<<<<
+# <<<<<------<<<<<-----<<<<<-----<<<<<
 
     if (delta>0) and (planned_num_instances>max_instances):
-        ctx.logger.info('Maximum instances would be reached, skipping scale')
+        ctx.logger.info('Skipping scale, number of instances would be '
+                        'more ({0}) than maximum ({1}).'
+                        .format(planned_num_instances, max_instances))
+
         return
     elif (delta<0) and (planned_num_instances<min_instances):
-        ctx.logger.info('Minimum instances would be reached, skipping scale')
+        ctx.logger.info('Skipping scale, number of instances would be '
+                        'less ({0}) than minimum ({1}).'
+                        .format(planned_num_instances, min_instances))
         return
+    else:
+        ctx.logger.info('Proceeding with scale from {0} to {1} instances'
+                        .format(curr_num_instances, planned_num_instances))
 
     return scale_entity(ctx=ctx,
                         scalable_entity_name=scalable_entity_name,
