@@ -46,10 +46,10 @@ def scale_min_max(ctx,
     # <<<<<------<<<<<-----<<<<<-----<<<<<
 
     if (delta>0) and (planned_num_instances>max_instances):
-        ctx.logger.info('Maximum instances would be reached, skiping scale')
+        ctx.logger.info('Maximum instances would be reached, skipping scale')
         return
     elif (delta<0) and (planned_num_instances<min_instances):
-        ctx.logger.info('Minimum instances would be reached, skiping scale')
+        ctx.logger.info('Minimum instances would be reached, skipping scale')
         return
 
     return scale_entity(ctx=ctx,
