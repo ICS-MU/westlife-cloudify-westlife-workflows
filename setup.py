@@ -3,7 +3,7 @@ import setuptools
 setuptools.setup(
     zip_safe=False,
     name='cloudify-westlife-workflows',
-    version='0.0.3',
+    version='0.0.4',
     author='Vlastimil Holer',
     author_email='holer@ics.muni.cz',
     packages=['cloudify_westlife_workflows'],
