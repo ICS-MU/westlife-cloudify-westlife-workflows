@@ -3,7 +3,7 @@ plugins:
     executor: central_deployment_agent
     source: https://github.com/vholer/cloudify-westlife-workflows/archive/master.zip
     package_name: cloudify-westlife-workflows
-    package_version: '0.0.4'
+    package_version: '0.0.5'
 
 workflows:
   scale_min_max:
