@@ -45,6 +45,22 @@ def scale_min_max(ctx,
         scale_id = scaled_node.id
 # <<<<<------<<<<<-----<<<<<-----<<<<<
 
+    # check types
+    if isinstance(min_instances, basestring):
+        try:
+            min_instances = int(min_instances)
+        except ValueError:
+            raise ValueError('The min_instances parameter must be a number. '
+                             'Got: {0}'.format(min_instances))
+
+    if isinstance(max_instances, basestring):
+        try:
+            max_instances = int(max_instances)
+        except ValueError:
+            raise ValueError('The max_instances parameter must be a number. '
+                             'Got: {0}'.format(max_instances))
+
+    # check instance limits
     if (delta>0) and (planned_num_instances>max_instances):
         ctx.logger.info('Skipping scale, number of instances would be '
                         'more ({0}) than maximum ({1}).'
@@ -60,6 +76,7 @@ def scale_min_max(ctx,
         ctx.logger.info('Proceeding with scale from {0} to {1} instances'
                         .format(curr_num_instances, planned_num_instances))
 
+    # scale
     return scale_entity(ctx=ctx,
                         scalable_entity_name=scalable_entity_name,
                         delta=delta,
