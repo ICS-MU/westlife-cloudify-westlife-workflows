@@ -12,7 +12,8 @@ def scale_min_max(ctx,
                  ignore_failure=False,
                  **kwargs):
     return scale_entity(ctx=ctx,
-                        scalable_entity_name=node_id,
+                        scalable_entity_name=scalable_entity,
                         delta=delta,
                         scale_compute=scale_compute,
+                        ignore_failure=ignore_failure,
                         **kwargs)
